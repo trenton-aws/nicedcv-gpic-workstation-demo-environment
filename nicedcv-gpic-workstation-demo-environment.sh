@@ -16,6 +16,7 @@ VPCSUBNETPUBLICACIDR=172.17.173.192/28
 #NICEDCVPRODUCTCODE=ohxvp94vyvioa6b8i7o30amz
 NICEOWNERID=877902723034
 AMITAG=NVIDIA-Gaming
+# AMITAG=NVIDIA
 # =============================================================================
 LIGHTRED="\e[91m"
 LIGHTGREEN="\e[92m"
@@ -209,8 +210,8 @@ case "$RUNOPTION" in
     #trimming non-standard command output
     #AMIID=${AMIID:7:-3}
     #Workaround using Owner ID and AMI name
-    # AMIID=$((aws ec2 describe-images --region ${AWS_REGION} --filters "Name=owner-id,Values=${NICEOWNERID}" "Name=architecture,Values=x86_64" "Name=is-public,Values=true" "Name=platform,Values=windows" "Name=name,Values=*${AMITAG}*" --query "sort_by(Images, &CreationDate)[-1].ImageId") 2>&1)
-    AMIID=$((aws ec2 describe-images --region ${AWS_REGION} --filters "Name=owner-id,Values=${NICEOWNERID}" "Name=architecture,Values=x86_64" "Name=is-public,Values=true" "Name=platform,Values=windows" --query "sort_by(Images, &CreationDate)[-1].ImageId") 2>&1)
+    AMIID=$((aws ec2 describe-images --region ${AWS_REGION} --filters "Name=owner-id,Values=${NICEOWNERID}" "Name=architecture,Values=x86_64" "Name=is-public,Values=true" "Name=platform,Values=windows" "Name=name,Values=*${AMITAG}*" --query "sort_by(Images, &CreationDate)[-1].ImageId") 2>&1)
+    # AMIID=$((aws ec2 describe-images --region ${AWS_REGION} --filters "Name=owner-id,Values=${NICEOWNERID}" "Name=architecture,Values=x86_64" "Name=is-public,Values=true" "Name=platform,Values=windows" --query "sort_by(Images, &CreationDate)[-1].ImageId") 2>&1)
     AMIID=${AMIID:1:-1}
 
     echo "[3/5]Creating security group"
